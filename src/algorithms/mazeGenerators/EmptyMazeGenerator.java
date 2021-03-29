@@ -1,5 +1,5 @@
 package algorithms.mazeGenerators;
-
+//test
 public class EmptyMazeGenerator extends AMazeGenerator{
     @Override
     public Maze generate(int row, int col) {
