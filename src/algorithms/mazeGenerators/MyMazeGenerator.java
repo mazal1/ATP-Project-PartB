@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class MyMazeGenerator extends AMazeGenerator {
 
+
     public Maze generate (int row, int col) {
 
-        Maze maze=new Maze(row,col);
+        Maze maze = new Maze(row, col);
         // build maze and initialize with only walls
         StringBuilder s = new StringBuilder(col);
         for (int x = 0; x < col; x++)
@@ -48,6 +49,7 @@ public class MyMazeGenerator extends AMazeGenerator {
                 if (maz[col_current][col_current] == '1') {
                     if (maz[op.getP_row()][op.getP_col()] == '1') {
 
+
                         // open path between the nodes
                         maz[row_current][col_current] = '0';
                         maz[op.getP_row()][op.getP_col()] = '0';
@@ -72,21 +74,25 @@ public class MyMazeGenerator extends AMazeGenerator {
             } catch (Exception e) { // ignore NullPointer and ArrayIndexOutOfBounds
             }
             // if algorithm has resolved, mark end node
-            if (frontier.isEmpty() && last!=null) {
+            if (frontier.isEmpty() && last != null) {
                 maz[last.getP_row()][last.getP_col()] = 'E';
 
             }
-
-            // print final maze
-            for (int i = 0; i < row; i++)
-            {
-                for (int j = 0; j < col; j++)
-                    System.out.print(maz[i][j]);
-            }
-            System.out.println();
         }
+        // print final maze
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+                System.out.print(maz[i][j]);
+            System.out.println();
+
+        }
+
+
+
 
                 return maze;
-            }
-        }
+    }
+
+}
 

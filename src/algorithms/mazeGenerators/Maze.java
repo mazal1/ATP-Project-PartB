@@ -1,6 +1,8 @@
 package algorithms.mazeGenerators;
 //import java.util.Random;
 
+import java.util.Arrays;
+
 public class Maze {
     private int col;
     private int row;
@@ -38,6 +40,15 @@ public class Maze {
     }
 
     public char [][] getMap(){return this.maze;}
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
     public void print(){
         String path = " ";
         for (int row=0; row<this.maze.length; row++)
