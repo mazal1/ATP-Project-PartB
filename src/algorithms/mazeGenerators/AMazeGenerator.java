@@ -14,4 +14,5 @@ public abstract class AMazeGenerator implements IMazeGenerator{
         return generate_time;
 
     }
+
 }

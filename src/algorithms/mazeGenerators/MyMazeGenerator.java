@@ -74,7 +74,7 @@ public class MyMazeGenerator extends AMazeGenerator {
             } catch (Exception e) { // ignore NullPointer and ArrayIndexOutOfBounds
             }
             // if algorithm has resolved, mark end node
-            if (frontier.isEmpty() && last != null) {
+            if (frontier.isEmpty() && last!=null) {
                 maz[last.getP_row()][last.getP_col()] = 'E';
 
             }

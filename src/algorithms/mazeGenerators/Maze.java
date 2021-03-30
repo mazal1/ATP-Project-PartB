@@ -28,6 +28,17 @@ public class Maze {
         return GoalPosition;
     }
 
+    public char[][] getMaze() {
+        return maze;
+    }
+    public int getCol() {
+        return col;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
     public void setStartPosition(int p_row, int p_column) {
         StartPosition = new Position(p_row,p_column);
     }
@@ -35,9 +46,6 @@ public class Maze {
     public void setGoalPosition(int p_row, int p_column) { GoalPosition = new Position(p_row, p_column);
     }
 
-    public char[][] getMaze() {
-        return maze;
-    }
 
     public char [][] getMap(){return this.maze;}
 
@@ -66,13 +74,7 @@ public class Maze {
             path=" ";
         }
     }
-    public int getCol() {
-        return col;
-    }
 
-    public int getRow() {
-        return row;
-    }
 
     public void SetPosition(int row, int col, char value)
     {
