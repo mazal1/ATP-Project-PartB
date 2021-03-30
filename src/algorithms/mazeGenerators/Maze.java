@@ -1,18 +1,21 @@
 package algorithms.mazeGenerators;
+//import java.util.Random;
 
 public class Maze {
-//    private int col;
-//    private int row;
+    private int col;
+    private int row;
     private Position StartPosition;
     private Position GoalPosition;
-    private int [][] maze;
+    private char [][] maze;
+    //Random randomGen = new Random();
 
-    public Maze(int col, int row) {
-//        this.col = col;
-//        this.row = row;
+
+    public Maze(int row, int col) {
+        this.col = col;
+        this.row = row;
         this.StartPosition = null;
         this.GoalPosition = null;
-        this.maze = new int[row][col];
+        this.maze = new char[row][col];
     }
 
     public Position getStartPosition() {
@@ -23,15 +26,18 @@ public class Maze {
         return GoalPosition;
     }
 
-    public void setStartPosition(int row, int column) {
-        StartPosition = new Position(row,column);
+    public void setStartPosition(int p_row, int p_column) {
+        StartPosition = new Position(p_row,p_column);
     }
 
-    public void setGoalPosition(int row, int column) {
-        GoalPosition = new Position(row, column);
+    public void setGoalPosition(int p_row, int p_column) { GoalPosition = new Position(p_row, p_column);
     }
 
-    public int [][] getMap(){return this.maze;}
+    public char[][] getMaze() {
+        return maze;
+    }
+
+    public char [][] getMap(){return this.maze;}
     public void print(){
         String path = " ";
         for (int row=0; row<this.maze.length; row++)
@@ -49,22 +55,15 @@ public class Maze {
             path=" ";
         }
     }
-//    public int getCol() {
-//        return col;
-//    }
+    public int getCol() {
+        return col;
+    }
 
-//    public void setCol(int col) {
-//        this.col = col;
-//    }
+    public int getRow() {
+        return row;
+    }
 
-//    public int getRow() {
-//        return row;
-//    }
-
-//    public void setRow(int row) {
-//        this.row = row;
-//    }
-    public void SetPosition(int row, int col, int value)
+    public void SetPosition(int row, int col, char value)
     {
         this.maze[row][col]=value;
     }
