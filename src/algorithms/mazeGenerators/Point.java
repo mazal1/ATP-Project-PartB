@@ -1,5 +1,5 @@
 package algorithms.mazeGenerators;
-
+import java.util.*;
 public class Point {
     private int p_row;
     private int p_col;
@@ -25,15 +25,11 @@ public class Point {
     }
     @Override
     public String toString() {
-        return "Point{" +
-                "p_row=" + p_row +
-                ", p_col=" + p_col +
-                ", parent=" + parent +
-                '}';
+        return "{" +p_row + ", " + p_col + '}';
     }
 
 
-    // compute opposite node given that it is in the other direction from the parent
+    // compute opposite node given that it is in thes other direction from the parent
     public Point opposite() {
         if (p_row != parent.getP_row())
         {
@@ -52,7 +48,7 @@ public class Point {
         {
             if (p_col > parent.getP_col())
             {
-                return new Point(p_row + 1, p_col+1, this);
+                return new Point(p_row , p_col+1, this);
 
             }
             else
@@ -62,6 +58,7 @@ public class Point {
             }
         }
         return null;
+
     }
 
 }
