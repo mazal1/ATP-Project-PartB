@@ -21,7 +21,7 @@ public abstract class AState {
     public int getCost(){return this.cost;}
     public AState getCameFrom(){return this.cameFrom;}
 
-  //  public void setState(Position state) {this.state = state;}
+  // / public void setState(Position state) {this.state = state;}
     public void setCost(int cost) {this.cost = cost;}
     public void setCameFrom(AState cameFrom) {this.cameFrom = cameFrom; }
 

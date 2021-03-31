@@ -24,7 +24,7 @@ public class MazeState extends AState{
     public String toString() {
         return this.state.toString();
     }
-
+//
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
