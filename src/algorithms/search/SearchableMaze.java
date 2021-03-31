@@ -18,62 +18,62 @@ public class SearchableMaze implements ISearchable{
 
     }
     public boolean outOfBounds(int row, int col){
-        if( row >= this.myMaze.getMap().length || row < 0 || col < 0 || col >= this.myMaze.getMap()[0].length)
+        if( row >= this.myMaze.getMaze().length || row < 0 || col < 0 || col >= this.myMaze.getMaze()[0].length)
             return true;
         return false;
     }
     public void VerticalAndHorizontalNeighbours(ArrayList<AState> successors, int row, int col){
         if (! outOfBounds(row,col)){
-            if (this.myMaze.getMap()[row][col]==0)
+            if (this.myMaze.getMaze()[row][col]==0)
                 successors.add(new MazeState(row,col,10));
         }
     }
     public void upperRightDiagonalNeighbour(ArrayList<AState> successors, int row, int col){
         if (outOfBounds(row,col))//if indexes are out of bound
             return;
-        else if (this.myMaze.getMap()[row][col]==0)
+        else if (this.myMaze.getMaze()[row][col]==0)
             if (outOfBounds(row,col-1))//check if the left neighbour of the diagonal cell is out of bound
                 if (outOfBounds(row+1,col)) //check if the down neighbour is out of bound
                     return;
-                else if (this.myMaze.getMap()[row+1][col]==0)
+                else if (this.myMaze.getMaze()[row+1][col]==0)
                     successors.add(new MazeState(row,col,15));
-            else if(this.myMaze.getMap()[row][col-1]==0) // check if there's an available path
+            else if(this.myMaze.getMaze()[row][col-1]==0) // check if there's an available path
                 successors.add(new MazeState(row,col,15));
     }
     public void lowerRightDiagonalNeighbour(ArrayList<AState> successors, int row, int col){
         if (outOfBounds(row,col))//if indexes are out of bound
             return;
-        else if (this.myMaze.getMap()[row][col]==0)
+        else if (this.myMaze.getMaze()[row][col]==0)
             if (outOfBounds(row-1,col))//check if upper neighbour out of bound
                 if (outOfBounds(row,col-1))
                     return;
-                else if (this.myMaze.getMap()[row][col-1]==0)
+                else if (this.myMaze.getMaze()[row][col-1]==0)
                     successors.add(new MazeState(row,col,15));
-            else if(this.myMaze.getMap()[row-1][col]==0) // check if there's an available path
+            else if(this.myMaze.getMaze()[row-1][col]==0) // check if there's an available path
                 successors.add(new MazeState(row,col,15));
     }
     public void lowerLeftDiagonalNeighbour(ArrayList<AState> successors, int row, int col){
         if (outOfBounds(row,col))//if indexes are out of bound
             return;
-        else if (this.myMaze.getMap()[row][col]==0)
+        else if (this.myMaze.getMaze()[row][col]==0)
             if (outOfBounds(row,col+1))//check if upper neighbour out of bound
                 if (outOfBounds(row-1,col))
                     return;
-                else if (this.myMaze.getMap()[row-1][col]==0)
+                else if (this.myMaze.getMaze()[row-1][col]==0)
                     successors.add(new MazeState(row,col,15));
-            else if(this.myMaze.getMap()[row][col+1]==0) // check if there's an available path
+            else if(this.myMaze.getMaze()[row][col+1]==0) // check if there's an available path
                 successors.add(new MazeState(row,col,15));
     }
     public void upperLeftDiagonalNeighbour(ArrayList<AState> successors, int row, int col){
         if (outOfBounds(row,col))//if indexes are out of bound
             return;
-        else if (this.myMaze.getMap()[row][col]==0)
+        else if (this.myMaze.getMaze()[row][col]==0)
             if (outOfBounds(row,col+1))//check if upper neighbour out of bound
                 if (outOfBounds(row+1,col))
                     return;
-                else if (this.myMaze.getMap()[row+1][col]==0)
+                else if (this.myMaze.getMaze()[row+1][col]==0)
                     successors.add(new MazeState(row,col,15));
-            else if(this.myMaze.getMap()[row][col+1]==0) // check if there's an available path
+            else if(this.myMaze.getMaze()[row][col+1]==0) // check if there's an available path
                 successors.add(new MazeState(row,col,15));
     }
 
@@ -81,13 +81,13 @@ public class SearchableMaze implements ISearchable{
 //    {
 //        if (outOfBounds(row,col))//if indexes are out of bound
 //            return;
-//        else if (this.myMaze.getMap()[row][col]==0)
+//        else if (this.myMaze.getMaze()[row][col]==0)
 //            if (outOfBounds(row+a,col+b))//check if upper neighbour out of bound
 //                if (outOfBounds(row+c,col+d))
 //                    return;
-//                else if (this.myMaze.getMap()[row+c][col+d]==0)
+//                else if (this.myMaze.getMaze()[row+c][col+d]==0)
 //                    successors.add(new MazeState(row,col,15));
-//            else if(this.myMaze.getMap()[row+a][col+b]==0) // check if there's an available path
+//            else if(this.myMaze.getMaze()[row+a][col+b]==0) // check if there's an available path
 //                successors.add(new MazeState(row,col,15));
 //    }
 
