@@ -16,9 +16,7 @@ public class MyMazeGenerator extends AMazeGenerator {
                 maze.SetPosition(x, y, 1);
                 visited_points[x][y] = false;
             }
-
         }
-
         // select random point and open as start node
         Position p = new Position((int) (Math.random() * row), (int) (Math.random() * col));
         int p_row = p.getRowIndex();

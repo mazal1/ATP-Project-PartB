@@ -43,7 +43,11 @@ public class Maze {
 
     public void setGoalPosition(int p_row, int p_col) { GoalPosition = new Position(p_row, p_col);
     }
+    public int get_Position_value(int row, int col)
+    {
+        return this.maze[row][col];
 
+    }
     public void setCol(int col) {
         this.col = col;
     }
@@ -56,15 +60,15 @@ public class Maze {
         StringBuilder path = new StringBuilder(" ");
         for (int row=0; row<this.maze.length; row++)
         {
-            for(int col=0;col<this.maze[0].length;col++)
+            for(int col=0; col<this.maze[0].length ;col++)
             {
                 if (this.getStartPosition().getRowIndex()==row && this.getStartPosition().getColumnIndex()==col)
                 {
-                    path.append("E").append(" ");
+                  path.append("E ");
                 }
                 else if(this.getGoalPosition().getRowIndex()==row &&this.getGoalPosition().getColumnIndex()==col)
                 {
-                    path.append("s").append(" ");
+                    path.append("S ");
                 }
                 else
                     path.append( this.get_Position_value(row, col)).append(" ");
@@ -79,11 +83,7 @@ public class Maze {
         this.maze[row][col]=value;
     }
 
-    public int get_Position_value(int row, int col)
-    {
-        return this.maze[row][col];
 
-    }
     public boolean cell_exist(int row, int col, int[][]maze)
     {
         if (row<0 || row>maze.length-1)

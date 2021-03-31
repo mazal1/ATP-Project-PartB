@@ -10,7 +10,6 @@ public class main{
         System.out.println("************************MyMazeGenerator***********************");
         m.generate(row, col).print();
         System.out.println("************************SimpleMazeGenerator***********************");
-
         mm.generate(row,col).print();
 
 

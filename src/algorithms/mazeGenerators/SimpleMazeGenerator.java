@@ -7,6 +7,8 @@ public class SimpleMazeGenerator extends AMazeGenerator{
     public Maze generate(int row, int col) {
 
         Maze maze=new Maze( row, col);
+        maze.setStartPosition(((int)Math.random() * row), (int) (Math.random() * col));
+        maze.setGoalPosition(((int)Math.random() * row), (int) (Math.random() * col));
         // create instance of Random class
         Random rand = new Random();
         int rand_int1;
