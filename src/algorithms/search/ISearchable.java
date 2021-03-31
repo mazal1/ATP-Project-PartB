@@ -1,6 +1,9 @@
 package algorithms.search;
 
+import java.util.ArrayList;
+
 public interface ISearchable {
-    MazeState search(ISearchable s);
-    int getNumberOfVisitedNodes();
+    public AState getStartState();
+    public AState getGoalState();
+    public ArrayList<AState> getAllSuccessors(AState s);
 }
