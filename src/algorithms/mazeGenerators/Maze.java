@@ -103,19 +103,46 @@ public class Maze {
             sum_neighbors--;
         return sum_neighbors;
     }
+
     public boolean must_neighbors_is_walls(int row, int col, int[][]maze)
     {
         int sum_neighbors=sum_neighbors(row, col, maze);
         int sum_wall_neighbors=0;
+        int count=0;
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
-                if (x == 0 && y == 0 || x != 0 && y != 0)
-                    continue;
-                if (cell_exist(row + x, col + y, maze) && get_Position_value(row + x, col + y) == 1)
-                    sum_wall_neighbors++;
+                if (cell_exist(row + x, col + y, maze))
+                {
+                    if (x == 0 && y == 0)
+                        continue;
+                    else if (x != 0 && y != 0 && maze[row+x][col+y]==1)
+                    {
+                        count++;
+                    }
+                    if (cell_exist(row + x, col + y, maze) && get_Position_value(row + x, col + y) == 1)
+                        sum_wall_neighbors++;
+                }
+
             }
         }
-        return sum_neighbors == sum_wall_neighbors || sum_neighbors - 1 == sum_wall_neighbors;
+        if (count>2)
+            return true;
+        else if (sum_neighbors == 2)
+        {
+            if (sum_wall_neighbors==2)
+                return true;
+        }
+        else if  (sum_neighbors == 3)
+        {
+            if (sum_wall_neighbors==3)
+                return true;
+        }
+        else if  (sum_neighbors == 4)
+        {
+            if (sum_wall_neighbors==4)
+                return true;
+        }
+            return false;
     }
 
 

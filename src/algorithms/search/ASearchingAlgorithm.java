@@ -1,4 +1,6 @@
 package algorithms.search;
+//
+public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
 
-public class ASearchingAlgorithm {
+    public abstract String getName();
 }

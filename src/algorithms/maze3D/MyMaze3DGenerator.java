@@ -1,4 +1,4 @@
 package algorithms.maze3D;
 
-public class MyMaze3DGenerator {
+public abstract class MyMaze3DGenerator implements IMazeGenerator3D{
 }

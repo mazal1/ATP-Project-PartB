@@ -22,6 +22,7 @@ public class MyMazeGenerator extends AMazeGenerator {
         int p_row = p.getRowIndex();
         int p_col = p.getColumnIndex();
         maze.setStartPosition(p_row, p_col);
+        maze.SetPosition(p_row, p_col, 0);
         frontier.add(new Position(p_row, p_col));
 
         while (!frontier.isEmpty()) {
@@ -45,7 +46,10 @@ public class MyMazeGenerator extends AMazeGenerator {
             }
             // if algorithm has resolved, mark end node
             if (frontier.isEmpty()) {
+                maze.SetPosition(cur_row, cur_col, 0);
                 maze.setGoalPosition(cur_row, cur_col);
+
+
             }
 
         }

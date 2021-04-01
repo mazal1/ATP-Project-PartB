@@ -14,8 +14,8 @@ public class SimpleMazeGenerator extends AMazeGenerator{
         int rand_int1;
         for (int i=0; i<row; i++) {
             for (int j = 0; j < col; j++) {
-                rand_int1 = rand.nextInt(9);
-                if (rand_int1 % 2 == 0)
+                rand_int1 = rand.nextInt(5);
+                if (rand_int1 % 5!=0)
                     maze.SetPosition(i,j,0);
                 else
                     maze.SetPosition(i,j,1);
