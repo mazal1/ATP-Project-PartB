@@ -2,7 +2,7 @@ package algorithms.mazeGenerators;
 
 public class main{
 
-
+//I wish is working!!
     public static void main(String[] args) {
         int row=10, col=20;
         MyMazeGenerator m = new MyMazeGenerator();
