@@ -18,7 +18,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "{" +p_row + ", " + p_col + '}';
+        return "{" +p_row + "," + p_col + '}';
     }
     public int getRowIndex() {
         return p_row;
@@ -32,11 +32,11 @@ public class Position {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
-        return row == position.row && column == position.column;
+        return p_row == position.p_row && p_col == position.p_col;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(row, column);
+        return Objects.hash(p_row, p_col);
     }
 }

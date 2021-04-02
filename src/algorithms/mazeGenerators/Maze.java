@@ -64,11 +64,11 @@ public class Maze {
             {
                 if (this.getStartPosition().getRowIndex()==row && this.getStartPosition().getColumnIndex()==col)
                 {
-                  path.append("E ");
+                  path.append("S ");
                 }
                 else if(this.getGoalPosition().getRowIndex()==row &&this.getGoalPosition().getColumnIndex()==col)
                 {
-                    path.append("S ");
+                    path.append("E ");
                 }
                 else
                     path.append( this.get_Position_value(row, col)).append(" ");
