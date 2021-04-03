@@ -47,8 +47,9 @@ public class MyMazeGenerator extends AMazeGenerator {
             if (frontier.isEmpty()) {
                 maze.setGoalPosition(cur_row, cur_col);
             }
-
         }
+        maze.SetPosition(maze.getStartPosition().getRowIndex(),maze.getStartPosition().getColumnIndex(),0);
+        maze.SetPosition(maze.getGoalPosition().getRowIndex(),maze.getGoalPosition().getColumnIndex(),0);
         return maze;
     }
 }

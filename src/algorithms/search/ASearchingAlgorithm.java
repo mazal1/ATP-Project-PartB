@@ -16,9 +16,22 @@ public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
         visitedNodes++;
         return openList.poll();
     }
-    public Solution solve(ISearchable problem){
-        return null;
+    protected ArrayList<AState> solution(AState start, AState goal){
+        LinkedList<AState> path = new LinkedList<AState>();
+        ArrayList<AState> solutionPath = new ArrayList<AState>();
+        path.addFirst(goal);
+        goal = closeList.get(goal);
+        while(!start.equals(goal))
+        {
+            path.addFirst(goal);
+            goal = goal.getCameFrom();
+        }
+        for (AState cell : path) {
+            solutionPath.add(cell);
+        }
+        return solutionPath;
     }
+    public Solution solve(ISearchable problem){return null;}
 
     @Override
     public int getNumberOfNodesEvaluated() {

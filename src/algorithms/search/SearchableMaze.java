@@ -130,6 +130,13 @@ public class SearchableMaze implements ISearchable{
         lowerLeftDiagonalNeighbour(successors,row+1,col-1);
         VerticalAndHorizontalNeighbours(successors,row,col-1);
         upperLeftDiagonalNeighbour(successors,row-1,col-1);
-        return successors;
+        for (AState cell : successors) {
+            if(!mazestate.getAdjList().contains(cell)){
+                cell.setCameFrom(mazestate);
+                cell.setAdjList(mazestate);
+                mazestate.setAdjList(cell);
+            }
+        }
+        return mazestate.getAdjList();
     }
 }
