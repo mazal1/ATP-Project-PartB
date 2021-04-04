@@ -4,7 +4,7 @@ public class main{
 
 //I wish is working!!
     public static void main(String[] args) {
-        int row=10, col=20;
+        int row=5, col=8;
         MyMazeGenerator m = new MyMazeGenerator();
         SimpleMazeGenerator mm=new SimpleMazeGenerator();
         System.out.println("************************MyMazeGenerator***********************");

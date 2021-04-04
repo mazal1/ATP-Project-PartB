@@ -18,7 +18,7 @@ public class MyMazeGenerator extends AMazeGenerator {
             }
         }
         // select random point and open as start node
-        Position p = new Position((int) (Math.random() * row), (int) (Math.random() * col));
+        Position p = new Position((int) ( row/2), (int) col/2);
         int p_row = p.getRowIndex();
         int p_col = p.getColumnIndex();
         maze.setStartPosition(p_row, p_col);

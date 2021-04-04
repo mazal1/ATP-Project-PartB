@@ -13,6 +13,7 @@ public abstract class AMazeGenerator implements IMazeGenerator{
         generate_time=time_after-time_before;
         return generate_time;
 
+
     }
 
 }
