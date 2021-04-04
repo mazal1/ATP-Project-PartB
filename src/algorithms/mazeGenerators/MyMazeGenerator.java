@@ -27,7 +27,9 @@ public class MyMazeGenerator extends AMazeGenerator {
 
         while (!frontier.isEmpty()) {
             // pick current node at random
-            Position current = frontier.remove((int) (Math.random() * frontier.size()));
+            //Position current = frontier.remove((int) (Math.random() * frontier.size()));
+            Position current = frontier.remove((int) (frontier.size()-1));
+
             int cur_row = current.getRowIndex();
             int cur_col = current.getColumnIndex();
             visited_points[cur_row][cur_col] = true;
