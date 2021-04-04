@@ -9,7 +9,6 @@ public class Maze {
     private final int [][] maze;
     //Random randomGen = new Random();
 
-
     public Maze(int row, int col) {
         this.col = col;
         this.row = row;
@@ -64,11 +63,11 @@ public class Maze {
             {
                 if (this.getStartPosition().getRowIndex()==row && this.getStartPosition().getColumnIndex()==col)
                 {
-                  path.append("S ");
+                    path.append("E ");
                 }
                 else if(this.getGoalPosition().getRowIndex()==row &&this.getGoalPosition().getColumnIndex()==col)
                 {
-                    path.append("E ");
+                    path.append("S ");
                 }
                 else
                     path.append( this.get_Position_value(row, col)).append(" ");
@@ -103,11 +102,12 @@ public class Maze {
             sum_neighbors--;
         return sum_neighbors;
     }
+
     public boolean must_neighbors_is_walls(int row, int col, int[][]maze)
     {
         int sum_neighbors=sum_neighbors(row, col, maze);
         int sum_wall_neighbors=0;
-        int count=0;
+        int slant_count=0;
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
                 if (cell_exist(row + x, col + y, maze))
@@ -116,7 +116,7 @@ public class Maze {
                         continue;
                     else if (x != 0 && y != 0 && maze[row+x][col+y]==1)
                     {
-                        count++;
+                        slant_count++;
                     }
                     if (cell_exist(row + x, col + y, maze) && get_Position_value(row + x, col + y) == 1)
                         sum_wall_neighbors++;
@@ -124,7 +124,7 @@ public class Maze {
 
             }
         }
-        if (count>2)
+        if (slant_count>2)
             return true;
         else if (sum_neighbors == 2)
         {
@@ -143,4 +143,8 @@ public class Maze {
         }
         return false;
     }
+
+
+
+
 }
