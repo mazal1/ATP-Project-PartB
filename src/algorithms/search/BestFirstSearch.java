@@ -34,7 +34,9 @@ public class BestFirstSearch extends ASearchingAlgorithm{
                 break;
             ArrayList<AState> successors = domain.getAllSuccessors(current);
             for (AState neighbour : successors) {
-                if (!closeList.containsKey(neighbour)){
+                if (goal.equals(neighbour))
+                    return new Solution(solution(start,neighbour));
+                if (!closeList.containsKey(neighbour) && !openQueue.contains(neighbour)){
                     closeList.put(neighbour,neighbour.getCameFrom());
                     openQueue.add(neighbour);
                 }

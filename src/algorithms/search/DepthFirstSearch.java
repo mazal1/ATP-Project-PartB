@@ -29,32 +29,25 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
         AState start = problem.getStartState();
         AState goal = problem.getGoalState();
         openStack.push(start);
-        while(!openStack.isEmpty())
+        closeList.put(start,start.getCameFrom());//visited
+        AState current = popOpenList();
+        while(!current.equals(goal))
         {
-            AState current = popOpenList();
-            if(!closeList.containsKey(current))
-                closeList.put(current,current.getCameFrom());
             ArrayList<AState> successors = problem.getAllSuccessors(current);
-            for (AState neighbour : successors) {
-                if(!closeList.containsKey(neighbour)){
+            for (AState neighbour : successors)
+            {
+                if(!closeList.containsKey(neighbour))
+                {
+                    closeList.put(neighbour,neighbour.getCameFrom());
                     openStack.push(neighbour);
                 }
+                if (neighbour.equals(goal))
+                    return new Solution(solution(start,neighbour));
             }
+            current = popOpenList();
         }
         return new Solution(solution(start,goal));
     }
-//    public void DFS(ISearchable problem, AState current){
-//        closeList.put(current,current.getCameFrom());
-//        popOpenList();
-//        ArrayList<AState> successors = problem.getAllSuccessors(current);
-//        for (AState neighbour: successors) {
-//            if(!closeList.containsKey(neighbour)){
-//                DFS(problem,neighbour);
-//            }
-//
-//        }
-//
-//    }
 }
 
 

@@ -17,18 +17,17 @@ public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
         return openList.poll();
     }
     protected ArrayList<AState> solution(AState start, AState goal){
-        LinkedList<AState> path = new LinkedList<AState>();
         ArrayList<AState> solutionPath = new ArrayList<AState>();
-        path.addFirst(goal);
-        goal = closeList.get(goal);
+        solutionPath.add(0,goal);
+        if (goal.getCameFrom()==null)
+            goal = closeList.get(goal);
         while(!start.equals(goal))
         {
-            path.addFirst(goal);
+            if(!solutionPath.contains(goal))
+                solutionPath.add(0,goal);
             goal = goal.getCameFrom();
         }
-        for (AState cell : path) {
-            solutionPath.add(cell);
-        }
+        solutionPath.add(0,start);
         return solutionPath;
     }
     public Solution solve(ISearchable problem){return null;}

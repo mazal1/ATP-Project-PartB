@@ -10,21 +10,21 @@ public abstract class AState {
   private boolean visited;
   private int cost;
   private AState cameFrom;
-  private ArrayList<AState> adjList;
+//  private ArrayList<AState> adjList;
 
-  public ArrayList<AState> getAdjList() {
-    return adjList;
-  }
+//  public ArrayList<AState> getAdjList() {
+//    return adjList;
+//  }
 
-  public void setAdjList(AState state) {
-    this.adjList.add(state);
-  }
+//  public void setAdjList(AState state) {
+//    this.adjList.add(state);
+//  }
 
   public AState(int cost) {
     this.visited = false;
     this.cost = cost;
     this.cameFrom = null;
-    this.adjList = new ArrayList<AState>();
+//    this.adjList = new ArrayList<AState>();
     }
 
   public boolean getVisited() {return this.visited; }
