@@ -24,8 +24,12 @@ public abstract class AState {
     this.visited = false;
     this.cost = cost;
     this.cameFrom = null;
-//    this.adjList = new ArrayList<AState>();
     }
+  public AState(int cost, AState papa) {
+    this.visited = false;
+    this.cost = cost;
+    this.cameFrom = papa;
+  }
 
   public boolean getVisited() {return this.visited; }
   public int getCost(){return this.cost;}

@@ -63,11 +63,11 @@ public class Maze {
             {
                 if (this.getStartPosition().getRowIndex()==row && this.getStartPosition().getColumnIndex()==col)
                 {
-                    path.append("E ");
+                    path.append("S ");
                 }
                 else if(this.getGoalPosition().getRowIndex()==row &&this.getGoalPosition().getColumnIndex()==col)
                 {
-                    path.append("S ");
+                    path.append("E ");
                 }
                 else
                     path.append( this.get_Position_value(row, col)).append(" ");
@@ -124,21 +124,21 @@ public class Maze {
 
             }
         }
-        if (slant_count>2)
+        if (slant_count>=2)
             return true;
         else if (sum_neighbors == 2)
         {
-            if (sum_wall_neighbors==2)
+            if (sum_wall_neighbors>=1)
                 return true;
         }
         else if  (sum_neighbors == 3)
         {
-            if (sum_wall_neighbors==3)
+            if (sum_wall_neighbors>=2)
                 return true;
         }
         else if  (sum_neighbors == 4)
         {
-            if (sum_wall_neighbors==4)
+            if (sum_wall_neighbors>=3)
                 return true;
         }
         return false;

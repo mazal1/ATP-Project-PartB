@@ -8,15 +8,14 @@ public class SimpleMazeGenerator extends AMazeGenerator{
 
         Maze maze=new Maze( row, col);
         maze.setStartPosition(0,0);
-        maze.setGoalPosition(((int)Math.random() * row),col-1);
+        maze.setGoalPosition(row-1,col-1);
         // create instance of Random class
         Random rand = new Random();
-        for (int i=0; i<((row-1)*(col-1))/3; i++) {
+        for (int i=0; i<((row)*(col)/(row+col)); i++) {
             int randRow = rand.nextInt(row);
             int randCol = rand.nextInt(col);
-            if(randRow == maze.getStartPosition().getRowIndex() && randCol==maze.getStartPosition().getColumnIndex())
-                continue;
-            if (randRow== maze.getGoalPosition().getRowIndex() && randCol==maze.getGoalPosition().getColumnIndex())
+            if( (randRow == maze.getStartPosition().getRowIndex() && randCol==maze.getStartPosition().getColumnIndex() )||
+                    (randRow== maze.getGoalPosition().getRowIndex() && randCol==maze.getGoalPosition().getColumnIndex()) )
                 continue;
             maze.SetPosition(randRow,randCol,1);
         }

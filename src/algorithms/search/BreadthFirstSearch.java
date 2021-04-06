@@ -14,7 +14,6 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
         AState start = problem.getStartState(); // startPosition
         AState goal = problem.getGoalState();//GoalPosition
         openList.add(start);
-
         AState current = popOpenList();
         while(!current.equals(goal))
         {

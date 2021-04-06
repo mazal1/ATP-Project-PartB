@@ -5,7 +5,6 @@ public class MyMazeGenerator extends AMazeGenerator {
 
     public Maze generate(int row, int col) {
         Maze maze = new Maze(row, col);
-
         // iterate through direct neighbors of node
         ArrayList<Position> frontier = new ArrayList<>();
         boolean[][] visited_points = new boolean[row][col];
@@ -17,8 +16,8 @@ public class MyMazeGenerator extends AMazeGenerator {
                 visited_points[x][y] = false;
             }
         }
-        // select random point and open as start node
-        Position p = new Position((int) row/2, (int) col/2);
+        // select a point and open as start node
+        Position p = new Position((int) 0, (int) col/2);
         int p_row = p.getRowIndex();
         int p_col = p.getColumnIndex();
         maze.setStartPosition(p_row, p_col);

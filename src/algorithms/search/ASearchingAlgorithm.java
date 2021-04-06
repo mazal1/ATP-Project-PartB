@@ -4,7 +4,7 @@ import java.util.*;
 
 //
 public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
-    protected Queue<AState> openList;
+    protected LinkedList<AState> openList;
     protected HashMap<AState,AState> closeList;
     private int visitedNodes;
     public ASearchingAlgorithm(){

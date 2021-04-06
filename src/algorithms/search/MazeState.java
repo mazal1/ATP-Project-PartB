@@ -19,6 +19,10 @@ public class MazeState extends AState{
         super(cost);
         this.state = new Position(row,col);
     }
+    public MazeState(int row, int col, int cost, AState papa) {
+        super(cost,papa);
+        this.state = new Position(row,col);
+    }
 
     @Override
     public String toString() {
