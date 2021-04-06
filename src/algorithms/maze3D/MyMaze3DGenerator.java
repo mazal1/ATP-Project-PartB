@@ -16,6 +16,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         //****************************************************
         boolean[][][] visited = new boolean[depth][row][column];
         Stack<Position3D> wallsList = new Stack<Position3D>();
+        ArrayList<Position3D> possibleGoalCells = new ArrayList<Position3D>();
         ArrayList<Position3D> neighbours = new ArrayList<Position3D>();
         //We pick a starter position
         Position3D start = new Position3D(0,0,column/2);
@@ -28,14 +29,17 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         {
             for(int m_row = 0;m_row < maze3D.getMap()[0].length; m_row++)
             {
-                for (int m_col = 0; m_col<maze3D.getMap()[0][0].length;m_col++)
+                for (int m_col = 0; m_col<maze3D.getMap()[0][0].length;m_col++){
+                    visited[m_depth][m_row][m_col] = false;
                     maze3D.setCellValue(m_depth, m_row, m_col,1);
+                }
             }
         }
         maze3D.setCellValue(start.getDepthIndex(), start.getRowIndex(), start.getColumnIndex(), 0);
-
+//        maze3D.setCellValue(goal.getDepthIndex(), goal.getRowIndex(), goal.getColumnIndex(), 0);
         // mark first cell, the start cell, as visited.
         visited[start.getDepthIndex()][start.getRowIndex()][start.getColumnIndex()] = true;
+//        visited[goal.getDepthIndex()][goal.getRowIndex()][goal.getColumnIndex()] = true;
         wallsList.push(start);
         // add the neighbours of the cell to the wallsList
 //        addCellNeighbours(wallsList,start,maze3D,visited);
@@ -46,57 +50,34 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
 //            visited[currentCell.getDepthIndex()][currentCell.getRowIndex()][currentCell.getColumnIndex()]=true;
             addCellNeighbours(neighbours,currentCell,maze3D,visited);
             //neighbour.size is bigger then 0 if we have any unvisited cells.
-            if(neighbours.size()>0)
+            if(neighbours.size()>=2)
             {
-//                wallsList.push(currentCell);
-                Position3D neighbourCell = neighbours.get(randomCellIndex.nextInt(neighbours.size()));
-                maze3D.setCellValue(neighbourCell.getDepthIndex(), neighbourCell.getRowIndex(), neighbourCell.getColumnIndex(), 0);
-                visited[neighbourCell.getDepthIndex()][neighbourCell.getRowIndex()][neighbourCell.getColumnIndex()]=true;
-//                for (Position3D cell:neighbours)
-//                {
-//                    wallsList.push(cell);
-//                }
-                wallsList.push(neighbourCell);
-                neighbours.clear();
+                if(numOfWalls(neighbours,maze3D)>2)
+                {
+                    wallsList.push(currentCell);
+                    Position3D neighbourCell = neighbours.get(randomCellIndex.nextInt(neighbours.size()));
+                    maze3D.setCellValue(neighbourCell.getDepthIndex(), neighbourCell.getRowIndex(), neighbourCell.getColumnIndex(), 0);
+                    visited[neighbourCell.getDepthIndex()][neighbourCell.getRowIndex()][neighbourCell.getColumnIndex()]=true;
+                    wallsList.push(neighbourCell);
+                    possibleGoalCells.add(neighbourCell);
+                }
+
             }
-            if(wallsList.isEmpty())
-                maze3D.setGoalPosition(currentCell);
+            neighbours.clear();
         }
-        maze3D.setCellValue(start.getDepthIndex(), start.getRowIndex(),start.getColumnIndex(),0);
-        maze3D.setCellValue(maze3D.getGoalPosition().getDepthIndex(),maze3D.getGoalPosition().getRowIndex(),maze3D.getGoalPosition().getColumnIndex(),0);
+        maze3D.setGoalPosition(possibleGoalCells.get(randomCellIndex.nextInt(possibleGoalCells.size())));
         return maze3D;
     }
-//    private boolean checkVisitedNeighbours(Position3D position, Maze3D maze, boolean[][][]visited){
-//        int[][][] myMaze = maze.getMaze();
-//        int p_depth = position.getDepthIndex();
-//        int p_row = position.getRowIndex();
-//        int p_column = position.getColumnIndex();
-//        int numOfVisitedCells = 0;
-//        for(int depth = -1 ; depth<= 1;depth++){
-//            for (int row = -1; row<=1; row++){
-//                for (int col= -1 ; col<=1; col++){
-//                    if( depth==0 && row==0 && col==0)// we will get our current "position"
-//                        continue;
-//                    else
-//                    {
-//                        if(checkValidNeighbour(myMaze,position,p_depth+depth,p_row+row,p_column+col))
-//                        {
-//                            if(visited[p_depth+depth][p_row+row][p_column+col]==false)
-//                                numOfVisitedCells++;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if(numOfVisitedCells>0)
-//            return true;
-//        return false;
-//
-//    }
-
-
-
+    private int numOfWalls(ArrayList<Position3D> neighbours, Maze3D maze){
+        int wallNumber = 0;
+        for (Position3D cell: neighbours) {
+            if (maze.getMap()[cell.getDepthIndex()][cell.getRowIndex()][cell.getColumnIndex()] == 1)
+                wallNumber++;
+        }
+        return wallNumber;
+    }
     private void addCellNeighbours(ArrayList<Position3D> neighbours, Position3D position, Maze3D maze,boolean[][][]visited) {
+        //the function adds neighbours to the list only if they haven't been visited yet
         int[][][] myMaze = maze.getMap();
         int p_depth = position.getDepthIndex();
         int p_row = position.getRowIndex();

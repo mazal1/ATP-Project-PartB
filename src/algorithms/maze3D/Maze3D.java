@@ -105,13 +105,13 @@ public class Maze3D{
         else if((p_column == 0 && col == -1 ) || (p_column == maze[0][0].length-1 && col==maze[0][0].length))
             return false;
             //return true only if the row and column stay the same and the difference in the depth is 1
-        else if(p_row == row && p_column == col && (p_depth+1 == depth || p_depth-1 ==depth))
+        else if((p_row == row && p_column == col) && (p_depth+1 == depth || p_depth-1 ==depth))
             return true;
             //return true only if neighbour is in the same depth and column and the difference in row is 1
-        else if (p_depth == depth && p_column == col && (p_row+1 == row || p_row-1 == row))
+        else if ((p_depth == depth && p_column == col) && (p_row+1 == row || p_row-1 == row))
             return true;
             //return true if the neighbour's depth and row are the same and the difference in the column is 1
-        else if (p_depth == depth && p_row == row && (p_column+1 == col || p_column-1 == col))
+        else if ((p_depth == depth && p_row == row) && (p_column+1 == col || p_column-1 == col))
             return true;
         return false;
     }
