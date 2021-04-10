@@ -1,41 +1,40 @@
 package algorithms.search;
-
-import algorithms.mazeGenerators.Position;
-
-import java.util.ArrayList;
-import java.util.Objects;
-
+/** abstract class AState - represents the picture of our "world" or the problem.
+ * in the maze problem AState will represent the cell of the maze, the start state, goal state.
+ * @cost - an integer which represents the cost of arrival to a certain state
+ * @camefrom - AState which represents the "father" state from which we got to the current state.
+ * */
 public abstract class AState {
 
-  private boolean visited;
   private int cost;
   private AState cameFrom;
-//  private ArrayList<AState> adjList;
 
-//  public ArrayList<AState> getAdjList() {
-//    return adjList;
-//  }
-
-//  public void setAdjList(AState state) {
-//    this.adjList.add(state);
-//  }
-
+  /** constructor
+   * @cost - the cost of arrival to the state*/
   public AState(int cost) {
-    this.visited = false;
     this.cost = cost;
     this.cameFrom = null;
     }
+  /** constructor
+   * @cost -  int, the cost of arrival to the state
+   * @papa- AState, the father state from which we arrived to the current state
+   * */
   public AState(int cost, AState papa) {
-    this.visited = false;
     this.cost = cost;
     this.cameFrom = papa;
   }
-
-  public boolean getVisited() {return this.visited; }
+  /**getters
+   * getCost - int, returns the cost of the current state
+   * getCameFrom - AState, returns the father state
+   * */
   public int getCost(){return this.cost;}
   public AState getCameFrom(){return this.cameFrom;}
-
-  public void setVisited(boolean visit) {this.visited = visit;}
+  /**setters
+   * setCost - sets the cost of the current state
+   * @cost - int, the cost of arrival to the current state
+   * setCameFrom - sets the father state of the current state
+   * @camefrom - AState, the "father" from which we arrived to the current state.
+   * */
   public void setCost(int cost) {this.cost = cost;}
   public void setCameFrom(AState cameFrom) {this.cameFrom = cameFrom; }
 
