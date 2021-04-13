@@ -1,10 +1,11 @@
 package algorithms.mazeGenerators;
-/*
+/**
  * class EmptyMazeGenerator: is extends the abstract class AMazeGenerator and create a maze of zero's
  * this class implements the function generate.
  * */
 public class EmptyMazeGenerator extends AMazeGenerator{
-    /*
+
+    /**
      * function generate: get two inputs: row, col and return a maze with size row*col of zero's
      * @param row ,Integer ,number of rows
      * @param col ,Integer , number of columns

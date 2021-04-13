@@ -1,6 +1,8 @@
 package algorithms.maze3D;
 
-public class Maze3D{
+import algorithms.mazeGenerators.Maze;
+
+public class Maze3D extends Maze {
     private int[][][] maze;
     private Position3D startPosition;
     private Position3D goalPosition;

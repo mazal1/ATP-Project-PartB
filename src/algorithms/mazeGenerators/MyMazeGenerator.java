@@ -1,11 +1,12 @@
 package algorithms.mazeGenerators;
 import java.util.ArrayList;
-/*
+/**
  * class MyMazeGenerator: is extends the abstract class AMazeGenerator and create a randomized solvable maze
  * according to Randomized Prim's algorithm, this maze contains the integers: 1 or 0 (1=wall , 0=path).
  * */
 public class MyMazeGenerator extends AMazeGenerator {
-    /*
+
+    /**
      * function generate: get two inputs: row, col and return a random maze with size row*col
      * @param row ,Integer ,number of rows
      * @param col ,Integer , number of columns

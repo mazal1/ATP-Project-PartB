@@ -1,8 +1,18 @@
 
 package algorithms.mazeGenerators;
 import java.util.Random;
-
+/**
+ * class SimpleMazeGenerator: is extends the abstract class AMazeGenerator and create a simple randomized maze
+ * this maze contains the integers: 1 or 0 (1=wall , 0=path).
+ * */
 public class SimpleMazeGenerator extends AMazeGenerator{
+
+    /**
+     * function generate: get two inputs: row, col and return a maze with size row*col
+     * @param row ,Integer ,number of rows
+     * @param col ,Integer , number of columns
+     * @return Maze.
+     * */
     @Override
     public Maze generate(int row, int col) {
         Random rand = new Random();
