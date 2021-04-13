@@ -2,6 +2,7 @@ package algorithms.test;
 import algorithms.maze3D.IMazeGenerator3D;
 import algorithms.maze3D.Maze3D;
 import algorithms.maze3D.MyMaze3DGenerator;
+import algorithms.maze3D.SearchableMaze3D;
 import algorithms.search.*;
 import java.util.ArrayList;
 
@@ -12,10 +13,10 @@ public class RunSearchOnMaze3D {
 
 
 
-        SearchableMaze searchableMaze = new SearchableMaze(maze3D);
+        ISearchable searchableMaze = new SearchableMaze3D(maze3D);
 
         solveProblem(searchableMaze, new BreadthFirstSearch());
-       // solveProblem(searchableMaze, new DepthFirstSearch());
+        solveProblem(searchableMaze, new DepthFirstSearch());
         solveProblem(searchableMaze, new BestFirstSearch());
     }
 

@@ -1,4 +1,7 @@
 package algorithms.mazeGenerators;
+
+import java.util.Objects;
+
 /**
  * The class Position responsible for creating Position,
  * the position represents a cell in maze ,it has a p_row (number of the row) and p_col (number of the column).
@@ -62,6 +65,19 @@ public class Position {
         if (this.getRowIndex()==other.getRowIndex()  && this.getColumnIndex()==other.getColumnIndex() )
             return true;
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return p_row == position.p_row && p_col == position.p_col;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(p_row, p_col);
     }
 }
 

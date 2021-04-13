@@ -106,18 +106,18 @@ public class Maze {
      */
     public void print(){
         StringBuilder path = new StringBuilder(" ");
-        path.append("{");
+//        path.append("{");
         for (int row=0; row<this.maze.length; row++)
         {
             for(int col=0; col<this.maze[0].length ;col++)
             {
                 if (this.getStartPosition().getRowIndex()==row && this.getStartPosition().getColumnIndex()==col)
                 {
-                  path.append("E ");
+                  path.append("S ");
                 }
                 else if(this.getGoalPosition().getRowIndex()==row &&this.getGoalPosition().getColumnIndex()==col)
                 {
-                    path.append("S ");
+                    path.append("E ");
                 }
                 else
                     path.append( this.get_Position_value(row, col)).append(" ");

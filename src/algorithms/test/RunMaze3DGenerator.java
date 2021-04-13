@@ -2,10 +2,11 @@ package algorithms.test;
 import algorithms.maze3D.IMazeGenerator3D;
 import algorithms.maze3D.Maze3D;
 import algorithms.maze3D.MyMaze3DGenerator;
+import algorithms.maze3D.SearchableMaze3D;
 import algorithms.search.*;
 import java.util.ArrayList;
 
-class RunSearch3DMaze {
+class RunMaze3DGenerator {
     public static void main(String[] args) {
         IMazeGenerator3D mg = new MyMaze3DGenerator();
         Maze3D maze3D = mg.generate(100, 100, 100);
@@ -14,13 +15,13 @@ class RunSearch3DMaze {
             System.out.println("the time of generate is less than 1 minutes");
         else
             System.out.println("the time of generate is more than 1 minutes");
-        SearchableMaze searchableMaze = new SearchableMaze(maze3D);
+        ISearchable searchableMaze = new SearchableMaze3D(maze3D);
         if (searchableMaze!=null)
             System.out.println("it's a Search able Maze ");
         else
             System.out.println("it is not a Search able Maze ");
         solveProblem(searchableMaze, new BreadthFirstSearch());
-        //solveProblem(searchableMaze, new DepthFirstSearch());
+        solveProblem(searchableMaze, new DepthFirstSearch());
         solveProblem(searchableMaze, new BestFirstSearch());
 
     }
