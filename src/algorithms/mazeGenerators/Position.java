@@ -31,7 +31,7 @@ public class Position {
     * */
     @Override
     public String toString() {
-        return "{" +p_row + ", " + p_col + '}';
+        return "{" +p_row + "," + p_col + "}";
     }
     /*
      *function getRowIndex: no inputs
