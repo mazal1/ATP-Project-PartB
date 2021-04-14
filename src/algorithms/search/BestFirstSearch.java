@@ -34,8 +34,12 @@ public class BestFirstSearch extends ASearchingAlgorithm{
      * @return - return a Solution To the searchale problem.*/
     @Override
     public Solution solve(ISearchable domain) {
+        if (domain == null)
+            return null;
         AState start = domain.getStartState();
         AState goal = domain.getGoalState();
+        if (start == null || goal == null)
+            return null;
         closeList.put(start, start.getCameFrom());
         openQueue.add(start);
         while (!openQueue.isEmpty())
