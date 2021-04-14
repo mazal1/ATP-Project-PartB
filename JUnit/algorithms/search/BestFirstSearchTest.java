@@ -59,11 +59,4 @@ class BestFirstSearchTest {
     void wrongInputTest() throws Exception{
         assertTrue(bfs.solve(null) == null);
     }
-//    @Test
-//    void popOpenList() {
-//    }
-//
-//    @Test
-//    void solve() {
-//    }
 }
