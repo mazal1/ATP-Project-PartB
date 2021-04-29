@@ -11,8 +11,8 @@ class RunMaze3DGenerator {
         IMazeGenerator3D mg = new MyMaze3DGenerator();
         Maze3D maze3D = mg.generate(100, 100, 100);
         Long time_generate=mg.measureAlgorithmTimeMillis(100,100,100);
-        if (time_generate>1)
-            System.out.println("the time of generate is less than 1 minutes");
+        if (time_generate<=60000)
+            System.out.println("the t3ime of generate is less than 1 minutes");
         else
             System.out.println("the time of generate is more than 1 minutes");
         ISearchable searchableMaze = new SearchableMaze3D(maze3D);
@@ -23,6 +23,7 @@ class RunMaze3DGenerator {
         solveProblem(searchableMaze, new BreadthFirstSearch());
         solveProblem(searchableMaze, new DepthFirstSearch());
         solveProblem(searchableMaze, new BestFirstSearch());
+
 
     }
 

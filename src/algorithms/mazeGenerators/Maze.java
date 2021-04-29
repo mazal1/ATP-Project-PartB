@@ -18,6 +18,38 @@ public class Maze {
 * @param row - number of rows in maze
 * @param col - number of columns in maze
 */
+    public Maze(byte[] data) {
+        row = 0;
+        col = 0;
+        // init the row & col
+        for (int i = 0; i < 8; i++) {
+            row += data[i];
+            col += data[i + 8];
+        }
+        maze = new int[row][col];
+        int i = 16;
+        for (int r = 0; r < row; r++) {
+            for (int c = 0; c < col; c++) {
+                maze[r][c] = data[i++];
+            }
+        }
+        int sumColStart = 0, sumRowStart = 0;
+        for (int sr = 0; sr < 8; sr++) {
+            sumRowStart += data[i];
+            sumColStart += data[i + 8];
+            i++;
+            ;
+        }
+        i += 8;
+        StartPosition = new Position(sumRowStart, sumColStart);
+        int sumRowGoal = 0, sumColGoal = 0;
+        for (int gr = 0; gr < 8; gr++) {
+            sumRowGoal += data[i];
+            sumColGoal += data[i + 8];
+            i++;
+        }
+        GoalPosition = new Position(sumRowGoal, sumColGoal);
+    }
     public Maze(int row, int col) {
         this.col = col;
         this.row = row;
@@ -206,6 +238,65 @@ public class Maze {
                 return true;
         }
             return false;
+    }
+    /** remember to check for mikre kaze & error handling
+     * the byte array contains:
+     * 0:7 row
+     * 8:15 col
+     * 16:maze2DSize+16 maze info
+     * start_row
+     * start_col
+     * goal_row
+     * goal_col
+     * */
+
+    public byte[] toByteArray(){
+        byte[] mazeByteArray = new byte[16+row*col+32];
+        int c_row = row, c_col = col,start_row = StartPosition.getRowIndex(),
+                start_col = StartPosition.getColumnIndex(),goal_row = GoalPosition.getRowIndex(), goal_col = GoalPosition.getColumnIndex(),i=0;
+        while(c_row>127){
+            mazeByteArray[i++] =127;
+            c_row-=127;
+        }
+        mazeByteArray[i] = (byte)c_row;
+        i=8;// starting the column
+        while(c_col>127){
+            mazeByteArray[i++] = 127;
+            c_col-=127;
+        }
+        mazeByteArray[i] = (byte)c_col;
+        i = 16;// maze info
+        for(int x = 0; x< row; x++){
+            for(int y =0 ; y < col; y++){
+                mazeByteArray[i++] = (byte)maze[x][y];
+            }
+        }
+        // starting position
+        while(start_row > 127){
+            mazeByteArray[i++] = 127;
+            start_row-=127;
+        }
+        mazeByteArray[i] = (byte)start_row;
+        i = 8+8+ row*col+8 ;
+        while(start_col > 127){
+            mazeByteArray[i++] = 127;
+            start_col-=127;
+        }
+        mazeByteArray[i] = (byte)start_col;
+        // goal position
+        i = 8+8+ row*col+8+8;
+        while(goal_row > 127){
+            mazeByteArray[i++] = 127;
+            goal_row-=127;
+        }
+        mazeByteArray[i] = (byte)goal_row;
+        i = 8+8+ row*col+8+8+8;
+        while(goal_col > 127){
+            mazeByteArray[i++] = 127;
+            goal_col-=127;
+        }
+        mazeByteArray[i] = (byte) goal_col;
+        return mazeByteArray;
     }
 
 

@@ -16,6 +16,7 @@ class BestFirstSearchTest {
     private ISearchable maze;
     private IMazeGenerator[] mazeGen = {new EmptyMazeGenerator(), new SimpleMazeGenerator(), new MyMazeGenerator()};
     private IMazeGenerator3D maze3DGen = new MyMaze3DGenerator();
+
     @Test
     void getName() throws Exception{
         assertEquals("BestFirstSearch",bfs.getName());

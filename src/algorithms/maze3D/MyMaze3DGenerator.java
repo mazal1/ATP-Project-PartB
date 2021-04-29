@@ -47,10 +47,8 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         maze3D.setCellValue(start.getDepthIndex(), start.getRowIndex(), start.getColumnIndex(), 0);
         // mark first cell, the start cell, as visited.
         visited[start.getDepthIndex()][start.getRowIndex()][start.getColumnIndex()] = true;
-//        visited[goal.getDepthIndex()][goal.getRowIndex()][goal.getColumnIndex()] = true;
         wallsList.push(start);
         // add the neighbours of the cell to the wallsList
-//        addCellNeighbours(wallsList,start,maze3D,visited);
         while(!wallsList.isEmpty())
         {
             // get a random cell from the wallsList
