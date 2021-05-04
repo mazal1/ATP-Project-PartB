@@ -35,8 +35,8 @@ public class Maze {
         }
         int sumColStart = 0, sumRowStart = 0;
         for (int sr = 0; sr < 8; sr++) {
-            sumRowStart += data[i];
-            sumColStart += data[i + 8];
+            sumRowStart += (int) data[i];
+            sumColStart += (int) data[i + 8];
             i++;
             ;
         }
@@ -44,8 +44,8 @@ public class Maze {
         StartPosition = new Position(sumRowStart, sumColStart);
         int sumRowGoal = 0, sumColGoal = 0;
         for (int gr = 0; gr < 8; gr++) {
-            sumRowGoal += data[i];
-            sumColGoal += data[i + 8];
+            sumRowGoal += (int) data[i];
+            sumColGoal += (int) data[i + 8];
             i++;
         }
         GoalPosition = new Position(sumRowGoal, sumColGoal);

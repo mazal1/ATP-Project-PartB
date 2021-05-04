@@ -46,6 +46,6 @@ public class SimpleDecompressorInputStream extends InputStream {
                 i++;
             }
         }
-        return 0;
+        return 1;
     }
 }
