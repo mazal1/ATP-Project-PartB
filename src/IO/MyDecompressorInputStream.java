@@ -41,8 +41,7 @@ public class MyDecompressorInputStream extends InputStream {
         int rest=(row*col)%8;
         int division=(row*col)/8;
         while(i<maze_size+16-rest) {
-            byteMaze[i]=(byte)input.read();
-            decimal=byteMaze[i];
+            decimal=input.read();
             st_binar=Integer.toBinaryString(decimal);
             for (int j=0; j<8-st_binar.length(); j++) {
                 byteMaze[i]=(byte)0;

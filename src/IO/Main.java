@@ -105,13 +105,15 @@ public class Main {
     //<editor-fold desc="Test_CompressDecompressMaze">
     private static void Test_CompressDecompressMaze() {
         double averageCompressionRate=0;
-        int size = 8;
+        int size = 5;
         String mazeFileName = "savedMaze.maze";
         AMazeGenerator mazeGenerator = new MyMazeGenerator();
-        Maze maze = mazeGenerator.generate(size, size); //Generate new maze
+        //Maze maze = mazeGenerator.generate(size, size); //Generate new maze
+        byte [] save = new byte[]{5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0};
+        Maze maze = new Maze(save);
         double mazeOriginalSize = maze.toByteArray().length;
         try {
-            OutputStream out = new MyCompressorOutputStream(new FileOutputStream(mazeFileName));
+            OutputStream out = new SimpleCompressorOutputStream(new FileOutputStream(mazeFileName));
             out.write(maze.toByteArray());
             out.flush();
             out.close();
@@ -122,7 +124,7 @@ public class Main {
 
         byte savedMazeBytes[] = new byte[0];
         try {
-            InputStream in = new MyDecompressorInputStream(new FileInputStream(mazeFileName));
+            InputStream in = new SimpleDecompressorInputStream(new FileInputStream(mazeFileName));
             savedMazeBytes = new byte[maze.toByteArray().length];
             in.read(savedMazeBytes);
             in.close();
@@ -130,12 +132,13 @@ public class Main {
 
         }
         File compressed = new File("savedMaze.maze");
-        //appendToResultsFile("compressed size - " + (double) compressed.length() / 1024);
+        appendToResultsFile("compressed size - " + (double) compressed.length() / 1024);
         double current_comp = compressed.length();
-        //appendToResultsFile("compression rate - " + (((double)compressed.length() / 1024) / mazeOriginalSize) * 100);
+        appendToResultsFile("compression rate - " + (((double)compressed.length() / 1024) / mazeOriginalSize) * 100);
         Maze loadedMaze = new Maze(savedMazeBytes);
-        boolean areMazesEquals = Arrays.equals(loadedMaze.toByteArray(), maze.toByteArray());
-        if (areMazesEquals == true)
+        //boolean areMazesEquals = Arrays.equals(loadedMaze.toByteArray(), maze.toByteArray());
+        boolean areMazesEquals = theSame(loadedMaze.toByteArray(), maze.toByteArray());
+        if (areMazesEquals)
         {
             total_pass++;
         }
@@ -144,7 +147,15 @@ public class Main {
         }
     }
     //</editor-fold>
-
+    public static boolean theSame(byte[] arr1, byte[] arr2){
+        if (arr1.length != arr2.length)
+            return false;
+        for (int i=0; i<arr1.length; i++){
+            if (arr1[i] != arr2[i])
+                return false;
+        }
+        return true;
+    }
 
     //</editor-fold>
 }

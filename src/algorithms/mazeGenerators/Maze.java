@@ -15,8 +15,8 @@ public class Maze {
      /**A two-dimensional array that represents the mazes*/
     private final int [][] maze;
 /**constructor of Class Maze:  create a new two-dimensional maze with size: (col*row)
-* @param row - number of rows in maze
-* @param col - number of columns in maze
+//* @param row - number of rows in maze
+//* @param col - number of columns in maze
 */
     public Maze(byte[] data) {
         row = 0;
@@ -272,15 +272,16 @@ public class Maze {
             }
         }
         // starting position
+        //i=8+8+row*col;
         while(start_row > 127){
-            mazeByteArray[i++] = 127;
-            start_row-=127;
+            mazeByteArray[i++] = (byte) 127;
+            start_row-=(byte)127;
         }
         mazeByteArray[i] = (byte)start_row;
         i = 8+8+ row*col+8 ;
         while(start_col > 127){
-            mazeByteArray[i++] = 127;
-            start_col-=127;
+            mazeByteArray[i++] =(byte) 127;
+            start_col-=(byte)127;
         }
         mazeByteArray[i] = (byte)start_col;
         // goal position

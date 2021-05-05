@@ -48,8 +48,9 @@ public class MyCompressorOutputStream extends OutputStream {
             return;
         }
         for (i = 0; i < 16; i++) {
-            out.write(byteMaze[i]);
+            out.write(Byte.toUnsignedInt((byte)byteMaze[i]));
             out.flush();
+
         }
         String st = "";
 
@@ -61,19 +62,18 @@ public class MyCompressorOutputStream extends OutputStream {
                 i++;
             }
 
-
             int decimal = to_decimal(st);
-            out.write(decimal);
+            out.write(Byte.toUnsignedInt((byte) decimal));
             out.flush();
         }
         for (int j = 0; j < rest; j++) {
-            out.write(byteMaze[i]);
+            out.write(Byte.toUnsignedInt((byte)byteMaze[i]));
             out.flush();
             st = st + byteMaze[i];
             i++;
         }
         while (i < byteMaze.length) {
-            out.write(byteMaze[i]);
+            out.write(Byte.toUnsignedInt((byte)byteMaze[i]));
             out.flush();
             i++;
         }

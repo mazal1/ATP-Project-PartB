@@ -5,6 +5,11 @@ import java.io.InputStream;
 
 public class SimpleDecompressorInputStream extends InputStream {
     private InputStream input;
+
+    public SimpleDecompressorInputStream(InputStream input) {
+        this.input = input;
+    }
+
     @Override
     public int read() throws IOException {
         return 0;
@@ -45,6 +50,10 @@ public class SimpleDecompressorInputStream extends InputStream {
                 byteMaze[i]=(byte)1;
                 i++;
             }
+        }
+        for (int j=i; j<byteMaze.length; j++)
+        {
+            byteMaze[j] = (byte)input.read();
         }
         return 1;
     }
