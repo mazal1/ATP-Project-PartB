@@ -105,12 +105,12 @@ public class Main {
     //<editor-fold desc="Test_CompressDecompressMaze">
     private static void Test_CompressDecompressMaze() {
         double averageCompressionRate=0;
-        int size = 5;
+        int size = 597;
         String mazeFileName = "savedMaze.maze";
         AMazeGenerator mazeGenerator = new MyMazeGenerator();
-        //Maze maze = mazeGenerator.generate(size, size); //Generate new maze
-        byte [] save = new byte[]{5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0};
-        Maze maze = new Maze(save);
+        Maze maze = mazeGenerator.generate(size, size); //Generate new maze
+        //byte [] save = new byte[]{5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0};
+        //Maze maze = new Maze(save);
         double mazeOriginalSize = maze.toByteArray().length;
         try {
             OutputStream out = new SimpleCompressorOutputStream(new FileOutputStream(mazeFileName));
@@ -141,6 +141,8 @@ public class Main {
         if (areMazesEquals)
         {
             total_pass++;
+            System.out.println("total_pass:" +" "+total_pass);
+
         }
         else {
             appendToResultsFile(String.valueOf(total_test));

@@ -19,17 +19,17 @@ public class MyCompressorOutputStream extends OutputStream {
     }
     public int to_decimal(String s)
     {
-          String st=s;
-          int sum=0;
-          int two=1;
-          int digit;
-          for (int i=st.length()-1; i>-1;i--)
-          {
+        String st=s;
+        int sum=0;
+        int two=1;
+        int digit;
+        for (int i=st.length()-1; i>-1;i--)
+        {
             digit=(int)st.charAt(i)-48;
             sum=sum+two*digit;
             two=two*2;
-          }
-          return sum;
+        }
+        return sum;
     }
     @Override
     public void write(int b) throws IOException {
@@ -52,7 +52,11 @@ public class MyCompressorOutputStream extends OutputStream {
             out.flush();
 
         }
-        String st = "";
+        // i = 16 we finished with the row and column.
+        // start compressing the maze, we'll write to the stream -1 at the beginning of the maze content
+        // and -1 at the end of the content, so we would know when to stop decompressing
+
+        String st = "";    //he saved in st(string) 8 cells of maze in string that creat a binnary number/
 
         for (int d = 0; d < division; d++) {
             st = "";
