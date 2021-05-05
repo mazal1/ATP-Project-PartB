@@ -41,6 +41,8 @@ public class SimpleDecompressorInputStream extends InputStream {
                 byteMaze[i]=0;
                 i++;
             }
+            if (decimal == -1)
+                break;
             decimal=(byte)input.read();
             for (int j=0; j<decimal; j++) {
                 byteMaze[i]=1;
@@ -49,6 +51,7 @@ public class SimpleDecompressorInputStream extends InputStream {
         }
         for (i = maze_size+16; i<byteMaze.length; i++)
             byteMaze[i] = (byte) input.read();
+        input.close();
         return 1;
     }
 }
