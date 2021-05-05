@@ -66,5 +66,6 @@ public class SimpleCompressorOutputStream extends OutputStream {
             out.write(byteMaze[i]);
             out.flush();
         }
+        out.close();
     }
 }
