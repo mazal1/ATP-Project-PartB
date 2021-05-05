@@ -32,9 +32,14 @@ public class SimpleCompressorOutputStream extends OutputStream {
             out.write(byteMaze[i]);
             out.flush();
         }
+        // i = 16 we finished with the row and column.
+        // start compressing the maze, we'll write to the stream -1 at the beginning of the maze content
+        // and -1 at the end of the content, so we would know when to stop decompressing
+        out.write(-1);
+        out.flush();
         while(i<byteMaze.length-32)
         {
-            while (byteMaze[i]==0)
+            while (byteMaze[i]==0 && i<byteMaze.length-32)
             {
                 i++;
                 count_index++;
@@ -42,7 +47,9 @@ public class SimpleCompressorOutputStream extends OutputStream {
             out.write(count_index);
             out.flush();
             count_index=0;
-            while (byteMaze[i]==1)
+            if (i==byteMaze.length-32 )
+                break;
+            while (byteMaze[i]==1 && i<byteMaze.length-32)
             {
                 i++;
                 count_index++;
@@ -50,7 +57,14 @@ public class SimpleCompressorOutputStream extends OutputStream {
             out.write(count_index);
             out.flush();
             count_index=0;
-            i++;
+//            i++;
+        }
+        // to signify the end of the maze's content we input -1;
+        out.write(-1);
+        out.flush();
+        for (i=byteMaze.length-32; i<byteMaze.length;i++){
+            out.write(byteMaze[i]);
+            out.flush();
         }
     }
 }
