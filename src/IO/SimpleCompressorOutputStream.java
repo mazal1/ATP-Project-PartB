@@ -29,7 +29,7 @@ public class SimpleCompressorOutputStream extends OutputStream {
         }
         for (i=0; i<16;i++)
         {
-            out.write(Byte.toUnsignedInt((byte)byteMaze[i]));
+            out.write(byteMaze[i]);
             out.flush();
         }
         while(i<byteMaze.length-32)
@@ -38,22 +38,19 @@ public class SimpleCompressorOutputStream extends OutputStream {
             {
                 i++;
                 count_index++;
-                if (i<byteMaze.length-32)
-                    break;
             }
-            out.write(Byte.toUnsignedInt((byte)count_index));
+            out.write(count_index);
             out.flush();
             count_index=0;
             while (byteMaze[i]==1)
             {
                 i++;
                 count_index++;
-                if (i<byteMaze.length-32)
-                    break;
             }
-            out.write(Byte.toUnsignedInt((byte)count_index));
+            out.write(count_index);
             out.flush();
             count_index=0;
+            i++;
         }
     }
 }
