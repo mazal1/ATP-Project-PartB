@@ -5,6 +5,11 @@ import java.io.InputStream;
 
 public class SimpleDecompressorInputStream extends InputStream {
     private InputStream input;
+
+    public SimpleDecompressorInputStream(InputStream input) {
+        this.input = input;
+    }
+
     @Override
     public int read() throws IOException {
         return 0;
@@ -16,36 +21,34 @@ public class SimpleDecompressorInputStream extends InputStream {
         {
             throw new NullPointerException("error");
         }
-        if (byteMaze.length==0)
-        {
-            return 0;
-        }
         int col=0; int row=0;
-        for (int j=0;j<16; j++ ) {
-            if (i<8)
-                row=row+(int)byteMaze[i];
-            else
-                col=col+(int)byteMaze[i];
+        // reading the maze and columns from the stream.
+        for (i=0;i<16; i++ )
+        {
             byteMaze[i]= (byte) input.read();
-            i++;
+            if (i<8)
+                row+=byteMaze[i];
+            else
+                col+=byteMaze[i];
         }
+        int test = (byte)input.read(); // should be -1;
         int maze_size=row*col;
         int decimal=0;
-        String st_binar;
-        int rest=(row*col)%8;
-        int division=(row*col)/8;
-        while(i<maze_size+16) {
-            //byteMaze[i]
-            decimal=input.read();
+        while(decimal!=-1)
+        {
+            decimal=(byte)input.read();
             for (int j=0; j<decimal; j++) {
-                byteMaze[i]=(byte)0;
+                byteMaze[i]=0;
                 i++;
             }
+            decimal=(byte)input.read();
             for (int j=0; j<decimal; j++) {
-                byteMaze[i]=(byte)1;
+                byteMaze[i]=1;
                 i++;
             }
         }
+        for (i = maze_size+16; i<byteMaze.length; i++)
+            byteMaze[i] = (byte) input.read();
         return 1;
     }
 }
