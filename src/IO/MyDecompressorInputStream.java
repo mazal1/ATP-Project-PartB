@@ -15,6 +15,10 @@ public class MyDecompressorInputStream extends InputStream {
     public int read() throws IOException {
         return 0;
     }
+    /*function read: get input: Array of byte- byteMaze represents a compressing maze.
+     The function will expand the maze by performing an operation opposite to the contraction
+      operation, it will take any value in the array from the representation of the maze and convert
+       it to a binary number represented by 8 bytes.*/
     public int read(byte[] byteMaze) throws IOException {
         int i=0; int count_index=0;
         /*a shfiut test*/
@@ -40,6 +44,9 @@ public class MyDecompressorInputStream extends InputStream {
         String st_binar;
         int rest=(row*col)%8;
         int division=(row*col)/8;
+
+        // i = 16 we finished with the row and column.
+        // start decompressing the maze.
         while(i<maze_size+16-rest) {
             decimal=input.read();
             st_binar=Integer.toBinaryString(decimal);
@@ -53,6 +60,7 @@ public class MyDecompressorInputStream extends InputStream {
             }
 
         }
+        /* Copies the starting point and goal point values. */
         for (int j=i; j<byteMaze.length; j++)
         {
             byteMaze[j] = (byte)input.read();
